@@ -12,5 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!-- 상단 앱 타이틀 바 숨기기 -->
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>
