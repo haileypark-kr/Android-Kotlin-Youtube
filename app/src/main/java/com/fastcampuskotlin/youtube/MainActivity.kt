@@ -2,7 +2,11 @@ package com.fastcampuskotlin.youtube
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.fastcampuskotlin.youtube.adapter.YoutubeListAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,7 +38,22 @@ class MainActivity : AppCompatActivity() {
 					call: Call<ArrayList<YoutubeItem>>,
 					response: Response<ArrayList<YoutubeItem>>
 				) {
-					Log.d(TAG, "onResponse: $response")
+					response.body()?.forEach {
+						Log.d(TAG, it.title)
+					}
+
+
+					val youtubeItemList = response.body()
+					val glide = Glide.with(this@MainActivity)
+
+					val adapter = YoutubeListAdapter(
+						youtubeItemList!!,
+						LayoutInflater.from(this@MainActivity),
+						glide,
+						this@MainActivity
+					)
+
+					findViewById<RecyclerView>(R.id.recyclerview_youtube_list).adapter = adapter
 				}
 
 				override fun onFailure(call: Call<ArrayList<YoutubeItem>>, t: Throwable) {

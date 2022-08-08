@@ -3,4 +3,5 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">mellowcode.org</domain>
     </domain-config>
+    <!-- androidManifest 파일에서 clearTextTraffic true로 바로 설정해도 됨. -->
 </network-security-config>
