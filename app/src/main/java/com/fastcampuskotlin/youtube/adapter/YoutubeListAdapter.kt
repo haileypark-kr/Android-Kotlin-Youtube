@@ -1,6 +1,7 @@
 package com.fastcampuskotlin.youtube.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.fastcampuskotlin.youtube.R
 import com.fastcampuskotlin.youtube.YoutubeItem
+import com.fastcampuskotlin.youtube.YoutubeItemActivity
 
 // adapter: 데이터를 받아서 관리하고 어댑터 뷰에 출력할 수 있는 형태로 데이터를 제공하는 객체
 // 이미 있는 Adapter 상속
@@ -37,6 +39,17 @@ class YoutubeListAdapter(
 			title = itemView.findViewById(R.id.title)
 			thumbnail = itemView.findViewById(R.id.thumbnail)
 			content = itemView.findViewById(R.id.content)
+
+
+			// 각 item 클릭 시 클릭 이벤트 리스너 등록
+			// 비디오 url 전달
+			itemView.setOnClickListener {
+				val pos = adapterPosition
+				val intent = Intent(context, YoutubeItemActivity::class.java)
+				intent.putExtra("video_url", youtubeItemList[pos].video)
+				
+				context.startActivity(intent)
+			}
 		}
 
 
